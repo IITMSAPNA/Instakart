@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Form</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+         body {
+          background-color: #b9ccc6;
+          padding: 20px;
+          font-family: Arial;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <center><h2 class="font-weight-bold">𝗔𝗱𝗱 𝗡𝗲𝘄 𝗣𝗿𝗼𝗱𝘂𝗰𝘁</h2></center>
+    <br>
+    <br>
+    <form method="POST" action="/admin/new_product" enctype="multipart/form-data">
+        <div class="form-row">
+            <!-- TODO ADD names to input  -->
+            <div class="form-group col-md-6">
+                <h5><label for="productName">Product Name</label></h5>
+                <input type="text" class="form-control" id="productName" name="pn" placeholder="Enter product name">
+            </div>
+            <div class="form-group col-md-6">
+                <h5><label for="productCategory">Product Category</label></h5>
+                <input type="text" class="form-control" id="productCategory" name="product_category" placeholder="Enter product category">
+            </div>
+        </div>
+        <div class="form-group">
+            <h5><label for="productDescription">Product Description</label></h5>
+            <textarea class="form-control" id="productDescription" rows="3" name="product_description" placeholder="Enter product description"></textarea>
+        </div>
+        <div class="form-row">
+            
+            <div class="form-group col-md-6">
+                <h5><label for="productPrice">Product Price</label></h5>
+                <input type="text" class="form-control" id="productPrice" name="product_price" placeholder="Enter product price">
+            </div>
+        </div>
+        <h5>New_Image:</h5>
+                  <p>
+                    <input type="file" name="file" autocomplete="off" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                  </p>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <h5><label for="productQuantity">Product Quantity</label></h5>
+                <input type="number" class="form-control" id="productQuantity" name="product_quantity" placeholder="Enter product quantity">
+            </div>
+            <div class="form-group col-md-6">
+                <h5><label for="productAvailability">Product Availability</label></h5>
+                <select class="form-control" id="productAvailability" name="product_is_available">
+                    <option value="available">Available</option>
+                    <option value="not-available">Not Available</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <h5><label for="manufacturingDate">Manufacturing Date</label></h5>
+                <input type="date" class="form-control" name="product_manufacturing_date" id="manufacturingDate">
+            </div>
+            <div class="form-group col-md-6">
+                <h5><label for="expiryDate">Expiry Date</label></h5>
+                <input type="date" class="form-control" name="product_expiry_date" id="expiryDate">
+            </div>
+        </div>
+        <a href="/admin" class="btn btn-outline-success">BACK TO INSTAKART</a>
+
+        <button type="submit" class="btn btn-outline-success" onClick='return confirmSubmit()'>Submit</button>
+    </form>
+</div>
+
+</body>
+
+<script LANGUAGE="JavaScript">
+    
+    function confirmSubmit()
+    {
+    var agree=confirm("Are you sure you wish to continue?");
+    if (agree)
+     return true ;
+    else
+     return false ;
+    }
+    </script>
+</html>

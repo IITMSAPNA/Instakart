@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%block title%}{% endblock %}</title>
+    <!-- Link to Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Link to your custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link href="{{url_for('static',filename='signin.css')}}"rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
+
+    <style>
+        /* styles.css */
+        .bg-image {
+            background-image: url("{{ url_for('static', filename= 'g2.png') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh; /* Adjust as needed */
+        }
+
+        * {
+          box-sizing: border-box;
+        }
+        
+        body {
+          background-color: #d7edc7;
+          padding: 20px;
+          font-family: Arial;
+        }
+        
+        /* Center website */
+        .main {
+          max-width: 1000px;
+          margin: auto;
+        }
+        
+        h1 {
+          font-size: 50px;
+          word-break: break-all;
+        }
+        
+        .row {
+          margin: 10px -16px;
+        }
+        
+        /* Add padding BETWEEN each column */
+        .row,
+        .row > .column {
+          padding: 8px;
+        }
+        
+        /* Create three equal columns that floats next to each other */
+        .column {
+          float: left;
+          /* width: 33.33%; */
+          display: none; /* Hide all elements by default */
+        }
+        
+        /* Clear floats after rows */ 
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+        
+        /* Content */
+        .content {
+          background-color: rgb(165, 197, 178);
+          padding: 10px;
+        }
+        
+        /* The "show" class is added to the filtered elements */
+        .show {
+          display: block;
+        }
+        
+        /* Style the buttons */
+        .btn {
+          border: none;
+          outline: none;
+          padding: 12px 16px;
+          background-color: rgb(161, 192, 111);
+          cursor: pointer;
+        }
+        
+        .btn:hover {
+          background-color: #ee4848;
+        }
+        
+        .btn.active {
+          background-color: #e4fe9d;
+          color: white;
+        }
+
+        .custom-button-color {
+        color: #ffffff; /* Font color */
+        background-color: #b3d6b1; /* Background color */
+        border-color: #b3d6b1; /* Border color */
+        }
+
+
+          .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          }
+
+          .tokry-heading {
+            color: #333;
+            text-transform: uppercase;
+          }
+
+          table {
+            width: 100%;
+            border-collapse: collapse;
+          }
+
+          th, td {
+            padding: 10px;
+            text-align: center;
+          }
+
+          th {
+            background-color: #333;
+            color: #fff;
+          }
+
+          tr:nth-child(even) {
+            background-color: #f2f2f2;
+          }
+
+          .delete-button {
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+          }
+
+          .delete-button:hover {
+            background-color: #c0392b;
+          }
+
+          .btn-custom {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+          }
+
+          .btn-custom:hover {
+            background-color: #2980b9;
+          }
+        
+
+        </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shop-window " style="color: red;" viewBox="0 0 16 16">
+            <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h12V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zm2 .5a.5.5 0 0 1 .5.5V13h8V9.5a.5.5 0 0 1 1 0V13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5a.5.5 0 0 1 .5-.5z"/>
+          </svg>
+            <a class="navbar-brand ms-md-auto me-auto" href="/admin" class="font-weight-bold">ＩｎｓｔａＫａｒｔ</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <br><br>
+            <form method="POST" action="/search" class="mb-3 mb-md-0">
+                <div class="input-group">
+                    <input type="text" name="searchbox" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                </div>
+            </form>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="/admin/summary">𝗦𝘂𝗺𝗺𝗮𝗿𝘆</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/edit_category">𝗠𝗮𝗻𝗮𝗴𝗲 𝗖𝗮𝘁𝗲𝗴𝗼𝗿𝘆</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/new_product">𝗔𝗱𝗱 𝗣𝗿𝗼𝗱𝘂𝗰𝘁</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: rgb(178,34,34);"  href="/logout-admin">𝗟𝗢𝗚𝗢𝗨𝗧</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+  </nav>
+    
+    <!-- Main Content -->
+    {%block main%}{%endblock%}
+    
+
+  
+    <!-- Link to Bootstrap JS (optional if you use Bootstrap components) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        filterSelection("all")
+        function filterSelection(c) {
+          var x, i;
+          x = document.getElementsByClassName("column");
+          if (c == "all") c = "";
+          for (i = 0; i < x.length; i++) {
+            w3RemoveClass(x[i], "show");
+            if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+          }
+        }
+        
+        function w3AddClass(element, name) {
+          var i, arr1, arr2;
+          arr1 = element.className.split(" ");
+          arr2 = name.split(" ");
+          for (i = 0; i < arr2.length; i++) {
+            if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+          }
+        }
+        
+        function w3RemoveClass(element, name) {
+          var i, arr1, arr2;
+          arr1 = element.className.split(" ");
+          arr2 = name.split(" ");
+          for (i = 0; i < arr2.length; i++) {
+            while (arr1.indexOf(arr2[i]) > -1) {
+              arr1.splice(arr1.indexOf(arr2[i]), 1);     
+            }
+          }
+          element.className = arr1.join(" ");
+        }
+        
+        
+        // Add active class to the current button (highlight it)
+        var btnContainer = document.getElementById("myBtnContainer");
+        var btns = btnContainer.getElementsByClassName("btn");
+        for (var i = 0; i < btns.length; i++) {
+          btns[i].addEventListener("click", function(){
+            var current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace(" active", "");
+            this.className += " active";
+          });
+        }
+        </script>
+
+</body>
+</html>

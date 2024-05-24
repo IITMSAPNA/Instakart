@@ -1,0 +1,29 @@
+{% extends "base1.html" %}
+  {% block title %}
+  {% endblock %}
+ 
+
+
+  {% block main %}
+    
+    <div class="container">
+    <h2>𝗦𝗘𝗟𝗘𝗖𝗧 𝗖𝗔𝗧𝗘𝗚𝗢𝗥𝗬</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for category in categories %}
+            <div class="col">
+            <div class="card h-100">
+                <a href="/admin/updatecategory/{{category.id}}"><img src="/static/{{ category.image }}" class="card-img-top" alt="{{ category.image }}" height="250px"></a>
+                <div class="card-body">
+                <h5 class="card-title">{{ category.name }}</h5>
+                </div>
+            </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- <center><h3><a href="/admin">Back</a></h3></center> -->
+    <center><a type="button" href="/admin" class="btn btn-success mb-5">𝗕𝗔𝗖𝗞</a></center>
+    <center><a type="button" href="/admin/UpdateNewCategory" class="btn btn-success mb-5">𝗖𝗥𝗘𝗔𝗧 𝗖𝗔𝗧𝗘𝗚𝗢𝗥𝗬</a></center>
+    {% endblock %}
+</body>
+</html>

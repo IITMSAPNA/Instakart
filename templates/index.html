@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+  {% block title %}
+  {% endblock %}
+ 
+
+
+  {% block main %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Main Content -->
+    <style>
+      .cat-menu-container {
+      display: flex;
+      column-gap: 0.3cm;
+      justify-content: center;
+
+      padding-bottom: 0.5cm;
+      }
+
+      .cat-menu {
+        padding: 0.3cm 0.6cm;
+        border: 1px solid white;
+        border-radius: 5px;
+        background-color: white;
+        font-size: 30px;
+      }
+      a {
+        text-decoration: none;
+        color: #3f826d;
+      }
+      a:hover {
+        cursor: default;
+        text-decoration: none;
+        color: #3f826d;
+      }
+
+    </style>
+
+
+    <div class="cat-menu-container">
+      {% for category in categories %}
+      <button type="button" class="cat-menu">
+        <a href="#{{category.name}}">{{category.name}}</a>
+      </button>
+      {% endfor %}
+    </div>
+
+    <div class="container mt-4">
+
+      <div class="row"></div>
+          
+          {%for category in categories %}
+          
+          <div class="col-md-8 column {{category.name}}">
+              
+              <h4 id="{{category.name}}">{{category.name}}</h4>
+              <div class="row">
+              {%for product in products %}
+              {% if product.category== category.name %}
+                  <!-- Replace the following code with your featured products -->
+                  {% if product.quantity>0 %}
+
+                  <div class="col-md-4 mb-4">
+                      <div class="card">
+                          <button class="btn-outline-success btn fw-bold" disabled=True>In Stock</button>
+
+                          <img src="{{ url_for('static', filename= product.image) }}" class="card-img-top" alt="Product 1">
+                          <div class="card-body">
+                              <h5 class="card-title">{{product.name}}</h5>
+                              <p class="card-text">₹{{product.price}}</p>
+
+                              <p class="card-text">{{product.description}}</p>
+
+                              <br>
+
+                              <p><strong>Mfg date:</strong> {{product.manufacturing_date}}</p>
+                              <p><strong>Expiry Date:</strong> {{product.expiry_date}}</p>
+                             
+                              <br>
+                              <p>Add your item</p>
+
+                              <form method="post" action="/cart">
+                                <div class="inputs"><input type="number" name="product_quantity" min="1" max="{{product.quantity}}" value="1"/></div>
+                                <input type="hidden" name="product_id" value="{{product.id}}">
+                                <input type="hidden" name="product_name" value="{{product.name}}">
+                                <input type="hidden" name="product_price" value="{{product.price}}">
+                              
+                                <br>
+                                <button class="btn-secondary btn" type="submit"> 
+                                Add to <i class="fas fa-shopping-cart"></i></button>
+                              </form>
+ 
+                          </div>
+                      </div>
+                  </div>
+                  {% else %}
+                  <div class="col-md-4 mb-4">
+                      <div class="card">
+                          <button class="btn-danger btn" disabled>Out of Stock</button>
+
+                          <img src="{{ url_for('static', filename= product.image) }}" class="card-img-top" alt="Product 1">
+                          <div class="card-body">
+                              <h5 class="card-title">{{product.name}}</h5>
+                              <p class="card-text">₹{{product.price}}</p>
+
+                              <p class="card-text">{{product.description}}</p>                                                       
+                              <br>
+                              <br>
+                              <button class="btn-secondary btn" disabled>
+                                   Add to CART
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+                  {%endif%}
+
+                  {% endif %}
+                  {%endfor%}
+              
+                  <!-- Add more product cards here -->
+              </div>
+
+          </div>
+          {%endfor%}
+          
+          
+      </div>
+  </div>
+  </div>
+
+  {% endblock %}
+

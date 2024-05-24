@@ -1,0 +1,32 @@
+{% extends "base1.html" %}
+  {% block title %}
+  {% endblock %}
+ 
+
+
+  {% block main %}
+    <center><h3><a href="/admin">Home</a></h3></center>
+    <div class="container">
+    <h2>Select Category</h2>
+    <form method="POST" action="/admin/UpdateNewCategory" enctype="multipart/form-data">
+        <div class="card mb-3">
+            <div class="row g-0">
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h4>New_Category_Name:</h4>
+                  <input class="form-control" id="exampleFormControlInput1" type="text" name="Category_Name">
+                  <h4>New_Image:</h4>
+                  <dl><p>
+                        <input type="file" name="file" autocomplete="off" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                  </p></dl>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-outline-success">Success</button>
+    </form>
+    </div>
+
+    {% endblock %}
+</body>
+</html>

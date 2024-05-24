@@ -1,0 +1,122 @@
+{% extends "base1.html" %}
+  {% block title %}
+  {% endblock %}
+ 
+
+
+  {% block main %}
+    <!-- Main Content -->
+    
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-4">
+                <h2>ᴄᴀᴛᴇɢᴏʀʏ</h2>
+                <ul class="list-group" id="myBtnContainer">
+                  <!--   Replace the following code with your categories and latest products -->
+                  <button onclick="filterSelection('all')">
+                      <li class="list-group-item"> All</li>
+                  </button>
+                  {%for category in categories %}
+                  <button onclick="filterSelection('{{category.name}}')">
+                      <li class="list-group-item"> {{category.name}}</li>
+                  </button>
+                        
+                      
+
+                    {% endfor %} 
+                    
+                     <!-- Add more category list items here -->
+                </ul>
+            </div>
+            {%for category in categories %}
+            
+            <div class="col-md-8 column {{category.name}}">
+                
+                <h2>{{category.name}}</h2>
+                <div class="row">
+                {%for product in products %}
+                {% if product.category== category.name %}
+                    <!-- Replace the following code with your featured products -->
+                    {% if product.quantity>0 %}
+
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <button class="btn-outline-success btn fw-bold" disabled=True>In Stock</button>
+
+                            <img src="{{ url_for('static', filename= product.image) }}" class="card-img-top" alt="Product 1">
+                            <div class="card-body">
+                                <h5 class="card-title">{{product.name}}</h5>
+                                <p class="card-text">₹{{product.price}}</p>
+
+                                <p class="card-text">{{product.description}}</p>
+                                <p class="card-text"><strong>Quantity:</strong> {{product.quantity}}</p>
+                                
+
+                                <br>
+
+                                <p><strong>Mfg Date:</strong> {{product.manufacturing_date}}</p>
+                                <p><strong>Expiry Date:</strong> {{product.expiry_date}}</p>
+                               
+                                <br>
+                               
+
+
+                                
+                                  <input type="hidden" name="product_id" value="{{product.id}}">
+                                  <input type="hidden" name="product_name" value="{{product.name}}">
+                                  <input type="hidden" name="product_price" value="{{product.price}}">
+                                
+                                  <br>
+                                  <a href="/admin/edit_product/{{product.id}}">
+                                  <button class="btn-secondary btn" type="submit">Edit Product</button></a>
+                               
+
+
+       
+                                
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <button class="btn-danger btn" disabled>Out of Stock</button>
+
+                            <img src="{{ url_for('static', filename= product.image) }}" class="card-img-top" alt="Product 1">
+                            <div class="card-body">
+                                <h5 class="card-title">{{product.name}}</h5>
+                                <p class="card-text">₹{{product.price}}</p>
+
+                                <p class="card-text">{{product.description}}</p>
+                                
+                                <p>Add your item</p>
+                                <input type="number" value="1">
+                                <br>
+                                <br>
+                                <a href="/admin/edit_product/{{product.id}}">
+                                  <button class="btn-secondary btn" type="submit">Edit Product</button></a>
+                              
+                            </div>
+                        </div>
+                    </div>
+                    {%endif%}
+
+
+
+
+                    {% endif %}
+                    {%endfor%}
+                
+                    <!-- Add more product cards here -->
+                </div>
+
+            </div>
+            {%endfor%}
+            
+            
+        </div>
+    </div>
+    {% endblock %}
+    
+

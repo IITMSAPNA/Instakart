@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}
+{% endblock %}
+
+{% block main %}
+<div class="container mt-5">
+    <h3 class="tokry-heading text-center mb-4">
+      <i class = "fas fa-shopping-cart"></i> CART <i class="fas fa-shopping-cart"></i>
+    </h3>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for cart in carts %}
+          <tr>
+            <td>{{ cart.name }}</td>
+            <td>{{ cart.price }}</td>
+            <td>{{ cart.quantity }}</td>
+            <td>{{ cart.total }}</td>
+            <td>
+              <form class="delete-form" action="/cart/delete/{{ cart.id }}" method="post">
+                <button class="delete-button" style="color: red;" type="submit">Delete</button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="text-center mt-5">
+      <h3>Total: {{ carts | sum(attribute='total') }}</h3>
+      <h4><a href="/place_order" class="btn btn-secondary btn-lg ml-2">Place Order</a></h4>
+      <h5><a href="/" class="btn btn-secondary btn-lg ml-2">Back to INSTAKART</a></h5>
+    </div>
+  
+</div>
+{% endblock %}

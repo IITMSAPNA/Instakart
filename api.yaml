@@ -1,0 +1,152 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "Your API Title"
+paths:
+  /category/{id}:
+    get:
+      summary: "Get a category by ID"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: "Success"
+        404:
+          description: "Category not found"
+    put:
+      summary: "Update a category by ID"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: category
+          required: true
+          schema:
+            $ref: "#/definitions/CategoryInput"
+      responses:
+        200:
+          description: "Success"
+        404:
+          description: "Category not found"
+  /category:
+    get:
+      summary: "Get all categories"
+      responses:
+        200:
+          description: "Success"
+      responses:
+        404:
+          description: "No categories found"
+    post:
+      summary: "Create a new category"
+      parameters:
+        - in: body
+          name: category
+          required: true
+          schema:
+            $ref: "#/definitions/CategoryInput"
+      responses:
+        201:
+          description: "Category created successfully"
+        404:
+          description: "Admin not found"
+        500:
+          description: "Internal server error"
+  /product/{id}:
+    get:
+      summary: "Get a product by ID"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: "Success"
+        404:
+          description: "Product not found"
+    put:
+      summary: "Update a product by ID"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: product
+          required: true
+          schema:
+            $ref: "#/definitions/ProductInput"
+      responses:
+        200:
+          description: "Success"
+        404:
+          description: "Product not found"
+  /product:
+    get:
+      summary: "Get all products"
+      responses:
+        200:
+          description: "Success"
+      responses:
+        404:
+          description: "No products found"
+    post:
+      summary: "Create a new product"
+      parameters:
+        - in: body
+          name: product
+          required: true
+          schema:
+            $ref: "#/definitions/ProductInput"
+      responses:
+        201:
+          description: "Product created successfully"
+        404:
+          description: "Admin not found"
+        500:
+          description: "Internal server error"
+definitions:
+  CategoryInput:
+    type: object
+    properties:
+      name:
+        type: string
+      image:
+        type: string
+      username:
+        type: string
+      password:
+        type: string
+  ProductInput:
+    type: object
+    properties:
+      name:
+        type: string
+      username:
+        type: string
+      password:
+        type: string
+      quantity:
+        type: integer
+      price:
+        type: number
+      category:
+        type: string
+      is_available:
+        type: boolean
+      desc:
+        type: string
+      manufacturing_date:
+        type: string
+      expiry_date:
+        type: string

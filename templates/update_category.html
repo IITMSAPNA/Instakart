@@ -1,0 +1,57 @@
+{% extends "base1.html" %}
+  {% block title %}
+  {% endblock %}
+ 
+
+
+  {% block main %}
+    <center><h3><a href="/admin">Home</a></h3></center>
+    <div class="container">
+    <h2>Select Category</h2>
+    <form method="POST" action="/admin/updatecategory/{{category.id}}" enctype="multipart/form-data">
+        <div class="card mb-3">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="/static/{{category.image}}" class="img-fluid rounded-start" alt="{{category.image}}">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h4>New_Category_Name:</h4>
+                  <input class="form-control" id="exampleFormControlInput1" type="text" name="Category_Name" value="{{category.name}}">
+                  <h4>New_Image:</h4>
+                  <dl><p>
+                        <input type="file" name="file" autocomplete="off" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                  </p></dl>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-outline-success">Success</button>
+          
+    </form>
+
+    <button type="submit"  class="btn-danger btn" onClick='DELETE_PRODUCT()'><i class="fas fa-times"></i>Delete</button>
+   
+    <form class="delete-form" action="/admin/delete_category/{{category.id}}" method="post">
+        <button type="submit" id="delete_button" class="btn-danger btn" hidden><i class="fas fa-times"></i>Delete</button>
+    </form>
+
+    </div>
+    <script>
+   
+
+      function DELETE_PRODUCT() {
+            var agreement = confirm("Are you sure you want to delete this category?");
+            if (agreement == true) {
+              if ( prompt("Enter admin's password") == '12345') {
+                document.getElementById("delete_button").click();
+              } else {
+                alert("Wrong credentials");
+              }
+            }
+      }
+      
+      </script>
+    {% endblock %}
+</body>
+</html>

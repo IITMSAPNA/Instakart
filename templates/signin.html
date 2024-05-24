@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Sign In</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('static/bg2.png'); /* Update the path to your background image*/
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* Ensure the background stays fixed */
+            font-family: Arial, sans-serif; /* Specify a font for the entire page */
+        }
+
+        .container {
+            margin-top: 10%; /* Adjust the top margin to your liking */
+        }
+
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .form-container h2 {
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .btn-sign-in, .btn-sign-up, .btn-admin {
+            width: 100%;
+        }
+
+        .other-links {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-4 form-container">
+            <form method="post" action="/user_login">
+                <h2>User Sign In</h2>
+                <div class="form-group">
+                    <label for="exampleInputEmail">Email address</label>
+                    <input name="email" type="email" class="form-control" id="exampleInputEmail"
+                           aria-describedby="emailHelp" placeholder="Enter email" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword">Password</label>
+                    <input name="password" type="password" class="form-control" id="exampleInputPassword"
+                           placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-sign-in">Submit</button>
+                <br>
+                <div class="other-links">
+                    <br>
+                    <a href="/admin-sign_in" class="btn btn-primary btn-admin">Admin</a>
+                    <br><br>
+                    <a href="/register" class="btn btn-primary btn-sign-up">Sign Up</a>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html>

@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+  {% block title %}
+  {% endblock %}
+
+  {% block main %}
+  <center><h2><b><u>Search Results...</u></b></h2></center>
+  <div class="container mt-4">
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2>ℂ𝕒𝕥𝕖𝕘𝕠𝕣𝕪 </h2>
+            
+            
+            <ul class="list-group" id="myBtnContainer">
+                <!--   Replace the following code with your categories and latest products -->
+                <button onclick="filterSelection('all')">
+                    <li class="list-group-item"> All</li>
+
+                </button>
+
+                {%for category in categories %}
+                <button onclick="filterSelection('{{category.name}}')">
+                    <li class="list-group-item"> {{category.name}}</li>
+
+                </button>
+
+                {% endfor %} 
+                
+                 <!-- Add more category list items here -->
+            </ul>
+        </div>
+        
+    </div>
+</div>
+</div>
+ 
+    <div class="col-md-8 column">
+                
+        <div class="row">
+        {%for product in products %}
+            <!-- Replace the following code with your featured products -->
+            {% if product.quantity>0 %}
+
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <button class="btn-outline-primary btn" disabled=True>In Stock</button>
+
+                    <img src="{{ url_for('static', filename= product.image) }}" class="card-img-top" alt="Product 1">
+                    <div class="card-body">
+                        <h5 class="card-title">{{product.name}}</h5>
+                        <p class="card-text">₹{{product.price}}</p>
+
+                        <p class="card-text">{{product.description}}</p>
+
+                        <br>
+
+                        <p><strong>Manufacturing Date:</strong> {{product.manufacturing_date}}</p>
+                        <p><strong>Expiry Date:</strong> {{product.expiry_date}}</p>
+                       
+                        <br>
+                        <p>Add your item</p>
+
+
+                        <form method="post" action="/cart">
+                          <div class="inputs"><input type="number" name="product_quantity" placeholder="In Kg" value="1"/></div>
+                          <input type="hidden" name="product_id" value="{{product.id}}">
+                          <input type="hidden" name="product_name" value="{{product.name}}">
+                          <input type="hidden" name="product_price" value="{{product.price}}">
+                        
+                          <br>
+                          <button class="btn-secondary btn" type="submit">Add to CART</button>
+                        </form>
+          
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <button class="btn-danger btn" disabled>Out of Stock</button>
+
+                    <img src="{{ url_for('static', filename= product.image) }}" class="card-img-top" alt="Product 1">
+                    <div class="card-body">
+                        <h5 class="card-title">{{product.name}}</h5>
+                        <p class="card-text">₹{{product.price}}</p>
+
+                        <p class="card-text">{{product.description}}</p>
+                        
+                        <p>Add your item</p>
+                        <input type="number" value="1">
+                        <br>
+                        <br>
+                        <button class="btn-secondary btn" disabled>
+                            <i class="fas fa-shopping-cart"></i> Add to TOKRY
+
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {%endif%}
+
+
+
+
+            
+            {%endfor%}
+        
+            <!-- Add more product cards here -->
+        </div>
+
+    </div>
+
+    
+    {% endblock %}

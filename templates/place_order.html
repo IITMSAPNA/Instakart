@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <h3 class="text-center mb-4">Place Your Order
+        </h3>
+
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Shipping Information</h4>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Shipping Address:</label>
+                        <textarea class="form-control" id="address" rows="4" placeholder="Your Shipping Address" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <h4>Payment Information</h4>
+                <form>
+                    <div class="form-group">
+                        <label for="card">Credit Card Number:</label>
+                        <input type="text" class="form-control" id="card" placeholder="Credit Card Number" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="expDate">Expiration Date:</label>
+                            <input type="text" class="form-control" id="expDate" placeholder="MM/YY" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="cvv">CVV:</label>
+                            <input type="text" class="form-control" id="cvv" placeholder="CVV" required>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-secondary btn-lg ml-2">Back to INSTAKART</a>
+            <a href="/" class="btn btn-primary btn-lg">Confirm Order</a>
+        </div>
+    </div>
+{% endblock %}
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+

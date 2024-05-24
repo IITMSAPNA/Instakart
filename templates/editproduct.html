@@ -1,0 +1,97 @@
+{% extends "base1.html" %}
+  {% block title %}
+  {% endblock %}
+ 
+
+
+  {% block main %}
+
+<div class="container mt-5">
+    <h2>Product Form</h2>
+    
+    <form method="POST">
+        <img src="{{ url_for('static', filename= product.image) }}" alt="Product 1" style="width:300px;height:300px;">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <h5>
+                <label for="productName">Product Name</label></h5>
+                <input type="text" name="pn" class="form-control" id="productName" placeholder="Enter product name" value="{{product.name}}">
+            </div>
+            <div class="form-group col-md-6">
+                <h5>
+                <label for="productCategory">Product Category</label></h5>
+                <input type="text" name="product_category" class="form-control" id="productCategory" placeholder="Enter product category" value="{{product.category}}">
+            </div>
+        </div>
+        <div class="form-group">
+            
+            <h5><label for="productDescription">Product Description</label></h5>
+            <input class="form-control" name="product_description" id="productDescription" rows="3" placeholder="Enter product description" value="{{product.description}}">
+        </div>
+        <div class="form-row">
+            
+            <div class="form-group col-md-6">
+                <h5><label for="productPrice">Product Price</label></h5>
+                <input type="text" class="form-control" name="product_price" id="productPrice" placeholder="Enter product price" value="{{product.price}}">
+            </div>
+    
+        </div>    
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <h5><label for="productQuantity">Product Quantity</label></h5>
+                <input type="number" class="form-control" name="product_quantity" id="productQuantity" placeholder="Enter product quantity" value="{{product.quantity}}">
+            </div>
+            <div class="form-group col-md-6">
+                <h5><label for="productAvailability">Product Availability</label></h5>
+                <select class="form-control" name="product_is_available" id="productAvailability">
+                    <option value="available">Available</option>
+                    <option value="not-available">Not Available</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <h5><label for="manufacturingDate">Manufacturing Date</label></h5>
+                <input type="date" class="form-control" id="manufacturingDate" name="product_manufacturing_date" value="{{product.manufacturing_date}}">
+            </div>
+            <div class="form-group col-md-6">
+                <h5><label for="expiryDate">Expiry Date</label></h5>
+                <input type="date" class="form-control" id="expiryDate" value="{{product.expiry_date}}" name="product_expiry_date">
+            </div>
+        </div>
+        <h5><a href="/admin" class="btn btn-secondary"> Back </a></h5>
+
+        
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>       
+
+    </form>
+
+    
+        <button type="submit"  class="btn-danger btn" onClick='DELETE_PRODUCT()'><i class="fas fa-times"></i>Delete</button>
+   
+    <form class="delete-form" action="/admin/delete_product/{{product.id}}" method="post">
+        <button type="submit" id="delete_button" class="btn-danger btn" hidden><i class="fas fa-times"></i>Delete</button>
+    </form>
+</div>
+<script>
+   
+
+    function DELETE_PRODUCT() {
+          var agreement = confirm("Are you sure you want to delete this category?");
+          if (agreement == true) {
+            if ( prompt("Enter admin's password") == '12345') {
+              document.getElementById("delete_button").click();
+            } else {
+              alert("Wrong credentials");
+            }
+          }
+    }
+    
+    </script>
+{% endblock %}
+
+
+
+</body>
+</html>
